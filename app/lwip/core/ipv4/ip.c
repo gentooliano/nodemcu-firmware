@@ -234,10 +234,10 @@ ip_forward(struct pbuf *p, struct ip_hdr *iphdr, struct netif *inp)
   }
   /* Do not forward packets onto the same network interface on which
    * they arrived. */
-  if (netif == inp) {
-    LWIP_DEBUGF(IP_DEBUG, ("ip_forward: not bouncing packets back on incoming interface.\n"));
-    goto return_noroute;
-  }
+//  if (netif == inp) {
+//    LWIP_DEBUGF(IP_DEBUG, ("ip_forward: not bouncing packets back on incoming interface.\n"));
+//    goto return_noroute;
+//  }
 
   /* decrement TTL */
   IPH_TTL_SET(iphdr, IPH_TTL(iphdr) - 1);
@@ -247,7 +247,7 @@ ip_forward(struct pbuf *p, struct ip_hdr *iphdr, struct netif *inp)
 #if LWIP_ICMP
     /* Don't send ICMP messages in response to ICMP messages */
     if (IPH_PROTO(iphdr) != IP_PROTO_ICMP) {
-      icmp_time_exceeded(p, ICMP_TE_TTL);
+      //icmp_time_exceeded(p, ICMP_TE_TTL);
     }
 #endif /* LWIP_ICMP */
     return;
